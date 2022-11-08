@@ -25,7 +25,8 @@ use Symfony\Component\Validator\Constraints\NotNull;
 //	new Delete(),
 		new GetCollection(),
 		new Post()
-	]
+	],
+	paginationItemsPerPage: 5
 )]
 class Question
 {

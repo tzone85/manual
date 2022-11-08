@@ -7,7 +7,3 @@ api_platform:
 
   swagger:
     versions: [3]
-
-  collection:
-    pagination:
-      items_per_page_parameter_name: 5

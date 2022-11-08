@@ -2,17 +2,34 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Common\Filter\SearchFilterInterface;
+use ApiPlatform\Doctrine\Orm\Filter;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\ApiFilter;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\NotNull;
+
 
 /**
  * An Answer
  *
  * @ORM\Entity
  */
-#[ApiResource]
+#[ApiResource,
+ ApiFilter(
+	 SearchFilter::class,
+	 properties: [
+		 'answer' => SearchFilterInterface::STRATEGY_PARTIAL,
+		 'question.addedDate' => SearchFilterInterface::STRATEGY_EXACT
+	 ]
+ ),
+	ApiFilter(
+		Filter\OrderFilter::class,
+		properties: ['answer']
+	)
+]
 class Answer
 {
 
@@ -91,9 +108,5 @@ class Answer
 	{
 		$this->question = $question;
 	}
-
-
-
-
 
 }

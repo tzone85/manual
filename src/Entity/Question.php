@@ -3,6 +3,11 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -12,7 +17,16 @@ use Symfony\Component\Validator\Constraints\NotNull;
  * A question
  * @ORM\Entity
  */
-#[ApiResource]
+#[ApiResource(
+	operations: [
+		new Get(),
+		new Put(),
+		new Patch(),
+//	new Delete(),
+		new GetCollection(),
+		new Post()
+	]
+)]
 class Question
 {
 	/**

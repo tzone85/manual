@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +36,22 @@ class Question
 	 */
 	private ?\DateTimeInterface $addedDate = null;
 
+	/**
+	 * @var Answer[] Possible answers for this question
+	 *
+	 * @ORM\OneToMany(
+	 *     targetEntity="Answer",
+	 *     mappedBy="question",
+	 *	 	cascade={"persist", "remove"}
+	 *	 )
+	 */
+	private iterable $answers;
+
+	public function __construct()
+	{
+		$this->answers = new ArrayCollection();
+	}
+
 	public function getQuestion(): string
 	{
 		return $this->question;
@@ -62,5 +79,14 @@ class Question
 	{
 		$this->addedDate = $addedDate;
 	}
+
+	/**
+	 * @return iterable
+	 */
+	public function getAnswers(): iterable|ArrayCollection
+	{
+		return $this->answers;
+	}
+
 
 }

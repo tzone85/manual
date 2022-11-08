@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 /**
  * An Answer
@@ -28,6 +30,7 @@ class Answer
 	 *
 	 * @ORM\Column(type="text")
 	 */
+	#[NotBlank]
 	private ?string $answer = '';
 
 	/**
@@ -35,6 +38,7 @@ class Answer
 	 *
 	 * @ORM\Column(type="datetime")
 	 */
+	#[NotNull]
 	private ?\DateTimeInterface $addedDate = null;
 
 	/**
@@ -44,6 +48,7 @@ class Answer
 	 *     targetEntity="Question",
 	 *     inversedBy="answers")
 	 */
+	#[NotNull]
 	private ?Question $question = null;
 
 	public function getId(): ?int

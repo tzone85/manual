@@ -5,6 +5,8 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 /**
  * A question
@@ -27,6 +29,7 @@ class Question
 	 *
 	 * @ORM\Column(type="text")
 	 */
+	#[NotBlank]
 	private string $question = '';
 
 	/**
@@ -34,6 +37,7 @@ class Question
 	 *
 	 * @ORM\Column(type="datetime")
 	 */
+	#[NotNull]
 	private ?\DateTimeInterface $addedDate = null;
 
 	/**
